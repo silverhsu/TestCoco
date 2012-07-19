@@ -86,6 +86,10 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+    
+    //Load levels
+    //self.levels = [[[NSMutableArray alloc] init] autorelease];
+    
 	
 	return YES;
 }
