@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface MusicLayer : CCLayerColor {
-    NSMutableArray *mainBeats;
-    NSMutableArray *offBeats;
+@interface MusicLayer : CCLayer {
+    NSMutableArray *_mainBeats;
+    NSMutableArray *_offBeats;
 }
-+(CCScene *) scene;
 
--(void)addMainBeat;
--(void)addOffBeat;
--(bool)checkBounds:(CGRect)rect;
+@property (nonatomic, retain) NSMutableArray *mainBeats;
+@property (nonatomic, retain) NSMutableArray *offBeats;
+
+-(int)checkTouchEvent:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void)addMainBeat:(id)sender;
+-(void)addOffBeat:(id)sender;
+
 @end

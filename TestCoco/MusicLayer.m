@@ -12,71 +12,53 @@
 
 @implementation MusicLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
-+(CCScene *) scene
-{
-	// 'scene' is an autorelease object.
-	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
-	MusicLayer *layer = [MusicLayer node];
-	
-	// add layer as a child to scene
-	[scene addChild: layer];
-	
-	// return the scene
-	return scene;
-}
+@synthesize mainBeats = _mainBeats;
+@synthesize offBeats = _offBeats;
 
 -(id) init
 {
-    if((self = [super initWithColor:ccc4(255, 255, 255, 255)]))
+    if((self = [super init]))
     {
-        mainBeats = [[NSMutableArray alloc] init];
-        offBeats = [[NSMutableArray alloc] init];
+        _mainBeats = [[NSMutableArray alloc] init];
+        _offBeats = [[NSMutableArray alloc] init];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"coin.mp3"];
         self.isTouchEnabled = YES;
-        
-        //projectilesDestroyed = 0;
-        //multiplier = 1;
-        
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
-        //player = [CCSprite spriteWithFile:@"Icon-Small.png"];
-        //player.position = ccp(winSize.width/2, player.contentSize.height/2);
-        //[self addChild:player];
-        
-        [self schedule:@selector(gameLogic1:) interval:2.0];
-        //[self schedule:@selector(gameLogic2:) interval:1.0];
-        //[self schedule:@selector(update:)];
     }
     return self;
 }
 
--(void) gameLogic1:(ccTime)dt
-{
-    id delay = [CCDelayTime actionWithDuration:1];
-    id call1 = [CCCallFuncN actionWithTarget:self selector:@selector(addMainBeat:)];
-    id call2 = [CCCallFuncN actionWithTarget:self selector:@selector(addOffBeat:)];
-    
-    id sequence = [CCSequence actions:call1,delay,call2,nil];
-    [self runAction:sequence];
-}
-/*
--(void)gameLogic2:(ccTime)dt
+-(void)gameLogic:(ccTime)dt
 {
     id delay = [CCDelayTime actionWithDuration:0.5];
-    id sequence = [CCSequence actions: delay, nil];
+    id call1 = [CCCallFunc actionWithTarget:self selector:@selector(addMainBeat:)];
+    id call2 = [CCCallFunc actionWithTarget:self selector:@selector(addOffBeat:)];
+    
+    id sequence = [CCSequence actions:call1,delay,call1,call2,nil];
     [self runAction:sequence];
-    [self addOffBeat];
-}*/
+    //[self addMainBeat];
+}
+
+-(void)spriteMoveFinished:(id)sender
+{
+    CCSprite *sprite = sender;
+    if (sprite.tag == 1)
+    {
+        [_mainBeats removeObject:sprite];
+        [self removeChild:sprite cleanup:YES];
+    }
+    else if(sprite.tag == 2)
+    {
+        [_offBeats removeObject:sprite];
+        [self removeChild:sprite cleanup:YES];
+    }
+}
 
 -(void)addMainBeat:(id)sender
 {
-    CCSprite *beat = [CCSprite spriteWithFile:@"Icon-Small.png"];
-    beat.tag = 1;
-    [mainBeats addObject:beat];
-    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *beat = [CCSprite spriteWithFile:@"bigtest.png"];
+    beat.tag = 1;
+    [_mainBeats addObject:beat];
     
     beat.position = ccp(beat.contentSize.width/2, winSize.height);
     [self addChild:beat];
@@ -90,11 +72,10 @@
 
 -(void)addOffBeat:(id)sender
 {
-    CCSprite *beat = [CCSprite spriteWithFile:@"Icon-Small.png"];
-    beat.tag = 2;
-    [offBeats addObject:beat];
-    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *beat = [CCSprite spriteWithFile:@"RedNote.png"];
+    beat.tag = 2;
+    [_offBeats addObject:beat];
     
     beat.position = ccp(winSize.width - beat.contentSize.width/2, winSize.height);
     [self addChild:beat];
@@ -106,71 +87,15 @@
     [beat runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 }
 
--(void)spriteMoveFinished:(id)sender
-{
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCSprite *sprite = (CCSprite *)sender;
-    if (sprite.tag == 1)
-    {
-        [mainBeats removeObject:sprite];
-    }
-    else
-    {
-        [offBeats removeObject:sprite];
-    }
-    [self removeChild:sprite cleanup:YES];
-    
-    
-    /*
-    if (sprite.tag == 1 && sprite.position.y > -sprite.contentSize.height/2)
-    {
-        Monster * temp = (Monster *)sender;
-        int direction = (sprite.position.x < sprite.contentSize.width) ? 0:1;
-        
-        NSLog(@"%f",temp.speed);
-        
-        int speed = winSize.width/temp.speed;	
-        id actionMove = [CCMoveTo actionWithDuration:speed position:(direction == 1) ? ccp(sprite.contentSize.width/2,sprite.position.y-30) : ccp(winSize.width - sprite.contentSize.width/2,sprite.position.y-30)];
-        id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(spriteMoveFinished:)];
-        //[[SimpleAudioEngine sharedEngine] playEffect:@"coin.mp3"];	
-        [sprite runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-    }
-    else
-    {
-        if (sprite.tag == 2)
-        {
-            [_projectiles removeObject:sprite];
-        }
-        else
-        {
-            GameOverScene *gameOverScene = [GameOverScene node];
-            [gameOverScene.layer.label setString:[NSString stringWithFormat:@"You Lose: %d targets destroyed",projectilesDestroyed]];
-            [_targets removeObject:sprite];
-            [[CCDirector sharedDirector] replaceScene:gameOverScene];
-        }
-        [self removeChild:sprite cleanup:YES];
-    }
-     */
-}
-
--(bool)checkBound:(CGRect)rect
-{
-            [[SimpleAudioEngine sharedEngine] playEffect:@"coin.mp3"];
-    CGRect checkRect =
-    CGRectMake(0, rect.size.height, rect.size.width, rect.size.height);
-
-    return CGRectIntersectsRect(rect, checkRect);
-}
-
--(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(int)checkTouchEvent:(NSSet *)touches withEvent:(UIEvent *)event
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:[touch view]];
     touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
-
-    CCSprite *offBeat = [offBeats objectAtIndex:0];
-    CCSprite *mainBeat = [mainBeats objectAtIndex:0];
+    
+    CCSprite *offBeat = [_offBeats objectAtIndex:0];
+    CCSprite *mainBeat = [_mainBeats objectAtIndex:0];
     
     CGRect offBeatRect = 
     CGRectMake(offBeat.position.x - (offBeat.contentSize.width/2), 
@@ -186,114 +111,41 @@
     CGRect checkMainRect = CGRectMake(0, 0, mainBeat.contentSize.width, mainBeat.contentSize.height);
     
     CGRect checkOffRect = CGRectMake(winSize.width - offBeat.contentSize.width, 0, offBeat.contentSize.width, mainBeat.contentSize.height);
-
+    
     if (CGRectIntersectsRect(mainBeatRect, checkMainRect) && CGRectContainsPoint(mainBeatRect, touchPoint))
     {
+        [self playNice:mainBeat.position];
         [self removeChild:mainBeat cleanup:YES];
-        [mainBeats removeObject:mainBeat];
-        [[SimpleAudioEngine sharedEngine] playEffect:@"coin.mp3"];
+        [_mainBeats removeObject:mainBeat];
+        return 1;
     }
     else if (CGRectIntersectsRect(offBeatRect, checkOffRect) && CGRectContainsPoint(offBeatRect, touchPoint))
     {
+        [self playNice:offBeat.position];
         [self removeChild:offBeat cleanup:YES];
-        [offBeats removeObject:offBeat];       
-        [[SimpleAudioEngine sharedEngine] playEffect:@"coin.mp3"];
+        [_offBeats removeObject:offBeat]; 
+        return 2;
     }
-    
-    /*
-    for (int i = 0; i < 2; i++)
-    {
-        CCSprite *projectile = [CCSprite spriteWithFile:@"yunkeball.png"];
-        projectile.position = ccp(winSize.width/2,player.contentSize.height/2);
-        projectile.tag = 2;
-        [_projectiles addObject:projectile];
-        
-        float offX = location.x - projectile.position.x;
-        float offY = location.y - projectile.position.y;
-        
-        if (offY <= 0) return; //should never happen
-        
-        float ratio = offX/offY;
-        
-        float yDist = sqrtf(powf(winSize.height,2.0) + powf(winSize.height * ratio,2.0));
-        float xDist = sqrtf(powf(winSize.width/2.0/ratio,2.0) + powf(winSize.width/2.0,2.0));
-        
-        CGPoint endPoint;
-        if (xDist >= yDist)
-        {
-            endPoint = ccp(winSize.width/2.0 + winSize.height * ratio,winSize.height);
-        }
-        else
-        {
-            endPoint = ccp(ratio / fabsf(ratio) * (winSize.width/2) + winSize.width/2, winSize.width/2.0 / fabsf(ratio));
-        }
-        
-        [self addChild:projectile];
-        float distance = sqrtf(powf((endPoint.x - projectile.position.x),2) + powf((endPoint.y - projectile.position.y),2));
-        
-        float velocity = 200/1;
-        float time = distance/velocity;
-        
-        id actionMove = [CCMoveTo actionWithDuration:time position:endPoint];
-        [projectile runAction:[CCSequence actions:actionMove,[CCCallFuncN actionWithTarget:self selector:@selector(spriteMoveFinished:)],nil]];
-    }
-     */
+    return 0;
 }
-/*
--(void) update:(ccTime)dt
+
+-(void)playNice:(CGPoint)position
 {
-    NSMutableArray *targetsHit = [[NSMutableArray alloc] init];   
-    for (Monster *target in _targets)
-    {
-        CGRect targetRect = 
-        CGRectMake(target.position.x - (target.contentSize.width/2), 
-                   target.position.y - (target.contentSize.height/2), 
-                   target.contentSize.width, 
-                   target.contentSize.height);
-        
-        NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-        
-        for (CCSprite *projectile in _projectiles)
-        {
-            CGRect projectileRect = 
-            CGRectMake(projectile.position.x - (projectile.contentSize.width/2),
-                       projectile.position.y - (projectile.contentSize.height/2),
-                       projectile.contentSize.width,
-                       projectile.contentSize.height);
-            if (CGRectIntersectsRect(projectileRect, targetRect))
-            {
-                [projectilesToDelete addObject:projectile];
-            }
-        }
-        
-        for (CCSprite *projectile in projectilesToDelete)
-        {
-            [_projectiles removeObject:projectile];
-            [self removeChild:projectile cleanup:YES];
-        }
-        
-        if (projectilesToDelete.count > 0)
-        {
-            [targetsHit addObject:target];
-        }
-        [projectilesToDelete release];
-    }
-    for (Monster *target in targetsHit)
-    {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"coin.mp3"];
-        if (target.hp > 1)
-        {
-            target.hp--;
-        }
-        else
-        {
-            //[[SimpleAudioEngine sharedEngine] playEffect:@"coin.mp3"];
-            [_targets removeObject:target];
-            projectilesDestroyed += 1;
-            [self removeChild:target cleanup:YES];
-        }
-    }
-    [targetsHit release];
-}*/
+    CCSprite *nice = [CCSprite spriteWithFile:@"Nice.png"];
+    nice.position = position;
+    [self addChild:nice];
+    id rotate = [CCEaseElasticInOut actionWithAction:[CCRotateBy actionWithDuration:0 angle:-15/360*3.1415926535*2]];
+    id scale1 = [CCScaleTo actionWithDuration:0.1 scale:1.25];
+    id scale2 = [CCScaleTo actionWithDuration:0.3 scale:0.25];
+    id deleteSelf = [CCCallFuncN actionWithTarget:self selector:@selector(cleanUpItem:)];
+    id sequence = [CCSequence actions:rotate, scale1, scale2, deleteSelf, nil];
+    [nice runAction:sequence];
+}
+
+-(void)cleanUpItem:(id)sender
+{
+    CCSprite *sprite = sender;
+    [self removeChild:sprite cleanup:YES];
+}
 
 @end

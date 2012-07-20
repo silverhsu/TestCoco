@@ -14,6 +14,16 @@
 @synthesize hp = _hp;
 @synthesize speed = _speed;
 
++(id)monster
+{
+    return nil;
+}
+
+-(id)action
+{
+    return nil;
+};
+
 @end
 
 
@@ -24,7 +34,7 @@
 +(id)monster
 {
     Creeper *monster = nil;
-    if ((monster = [[[super alloc] initWithFile:@"Icon-Small.png"] autorelease]))
+    if ((monster = [[[super alloc] initWithFile:@"Icon.png"] autorelease]))
     {
         monster.hp = 1;
         monster.speed = 200/1;

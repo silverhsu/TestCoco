@@ -27,5 +27,6 @@
 
 -(id)action;
 -(int)checkTime;
+-(void)nextWave;
 @end
 

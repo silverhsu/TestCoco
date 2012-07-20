@@ -21,18 +21,17 @@
 @property (nonatomic, assign) float hp;
 @property (nonatomic, assign) float speed;
 
-@end
-
-@interface Creeper : Monster {
-@private
-}
 +(id)monster;
 -(id)action;
+
 @end
 
-@interface Tank : Monster {
-@private
+@interface Creeper : Monster
+{
 }
-+(id)monster;
--(id)action;
+@end
+
+@interface Tank : Monster
+{
+}
 @end

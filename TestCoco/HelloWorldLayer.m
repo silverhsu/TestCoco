@@ -46,7 +46,7 @@
 	if( (self=[super init]) ) {
 		
 		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"BEST GAME EVER!!!11" fontName:@"Marker Felt" fontSize:50]; //font was 64
+		label = [CCLabelTTF labelWithString:@"BEST GAME EVER!!!11" fontName:@"Marker Felt" fontSize:50]; //font was 64
 
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
@@ -86,11 +86,11 @@
                                 ];*/
         
         // Play Music Menu Item
-        
+/*        
         CCMenuItem *playMusic = [CCMenuItemFont itemWithString:@"Music" block:^(id sender) {
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MusicLayer scene] withColor:ccWHITE]];
         }
-                                ];
+                                ];*/
         
 		// Achievement Menu Item using blocks
 		CCMenuItem *itemAchievement = [CCMenuItemFont itemWithString:@"Achievements" block:^(id sender) {
@@ -122,14 +122,13 @@
 		}
 									   ];
 		
-		CCMenu *menu = [CCMenu menuWithItems:playGame, playMusic, itemAchievement, itemLeaderboard, nil];
+		CCMenu *menu = [CCMenu menuWithItems:playGame, itemAchievement, itemLeaderboard, nil];
 		
 		[menu alignItemsHorizontallyWithPadding:20];
 		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
 		
 		// Add the menu to the layer
 		[self addChild:menu];
-
 	}
 	return self;
 }

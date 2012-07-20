@@ -49,6 +49,11 @@
     return 0;
 }
 
+-(id)nextWave
+{
+    return nil;
+}
+
 -(void)dealloc
 {
     [_spawnList release];

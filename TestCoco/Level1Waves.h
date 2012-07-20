@@ -20,7 +20,6 @@
 {
     
 }
-
 @end
 
 @interface Wave3 : Wave

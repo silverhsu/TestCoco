@@ -140,6 +140,16 @@
 		EB42FFF315B27BFF00DEFF22 /* CCTransitionProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42FFF215B27BFF00DEFF22 /* CCTransitionProgress.m */; };
 		EB42FFF715B27BFF00DEFF22 /* cocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42FFF615B27BFF00DEFF22 /* cocos2d.m */; };
 		EB42FFFE15B27BFF00DEFF22 /* CCDirectorIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = EB42FFFD15B27BFF00DEFF22 /* CCDirectorIOS.m */; };
+		EB8A1D8115B8FE1400373E6B /* BlueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D7915B8FE1300373E6B /* BlueButton.png */; };
+		EB8A1D8215B8FE1400373E6B /* BlueNote.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D7A15B8FE1300373E6B /* BlueNote.png */; };
+		EB8A1D8315B8FE1400373E6B /* Fail.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D7B15B8FE1300373E6B /* Fail.png */; };
+		EB8A1D8415B8FE1400373E6B /* GreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D7C15B8FE1300373E6B /* GreenButton.png */; };
+		EB8A1D8515B8FE1400373E6B /* GreenNote.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D7D15B8FE1300373E6B /* GreenNote.png */; };
+		EB8A1D8615B8FE1400373E6B /* Nice.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D7E15B8FE1300373E6B /* Nice.png */; };
+		EB8A1D8715B8FE1400373E6B /* RedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D7F15B8FE1400373E6B /* RedButton.png */; };
+		EB8A1D8815B8FE1400373E6B /* RedNote.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D8015B8FE1400373E6B /* RedNote.png */; };
+		EB8A1D8A15B9008500373E6B /* bigtest.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D8915B9008400373E6B /* bigtest.png */; };
+		EB8A1D8C15B9044800373E6B /* 480x320.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8A1D8B15B9044800373E6B /* 480x320.png */; };
 		EB98B57E15B712B700725853 /* Level1.m in Sources */ = {isa = PBXBuildFile; fileRef = EB98B57D15B712B700725853 /* Level1.m */; };
 		EBD4771415B61A210016CBEC /* Game2Layer.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD4771315B61A210016CBEC /* Game2Layer.m */; };
 		EBD4771915B666D90016CBEC /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD4771815B666D90016CBEC /* Level.m */; };
@@ -421,6 +431,16 @@
 		EB42FFFC15B27BFF00DEFF22 /* CCDirectorIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCDirectorIOS.h; path = libs/cocos2d/Platforms/iOS/CCDirectorIOS.h; sourceTree = "<group>"; };
 		EB42FFFD15B27BFF00DEFF22 /* CCDirectorIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CCDirectorIOS.m; path = libs/cocos2d/Platforms/iOS/CCDirectorIOS.m; sourceTree = "<group>"; };
 		EB42FFFF15B27BFF00DEFF22 /* CCES2Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCES2Renderer.h; path = libs/cocos2d/Platforms/iOS/CCES2Renderer.h; sourceTree = "<group>"; };
+		EB8A1D7915B8FE1300373E6B /* BlueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueButton.png; sourceTree = "<group>"; };
+		EB8A1D7A15B8FE1300373E6B /* BlueNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueNote.png; sourceTree = "<group>"; };
+		EB8A1D7B15B8FE1300373E6B /* Fail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fail.png; sourceTree = "<group>"; };
+		EB8A1D7C15B8FE1300373E6B /* GreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenButton.png; sourceTree = "<group>"; };
+		EB8A1D7D15B8FE1300373E6B /* GreenNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenNote.png; sourceTree = "<group>"; };
+		EB8A1D7E15B8FE1300373E6B /* Nice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nice.png; sourceTree = "<group>"; };
+		EB8A1D7F15B8FE1400373E6B /* RedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedButton.png; sourceTree = "<group>"; };
+		EB8A1D8015B8FE1400373E6B /* RedNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedNote.png; sourceTree = "<group>"; };
+		EB8A1D8915B9008400373E6B /* bigtest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigtest.png; sourceTree = "<group>"; };
+		EB8A1D8B15B9044800373E6B /* 480x320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 480x320.png; sourceTree = "<group>"; };
 		EB98B57C15B712B700725853 /* Level1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1.h; sourceTree = "<group>"; };
 		EB98B57D15B712B700725853 /* Level1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level1.m; sourceTree = "<group>"; };
 		EBD4771215B61A210016CBEC /* Game2Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game2Layer.h; sourceTree = "<group>"; };
@@ -669,6 +689,16 @@
 		EB42FF1115B27BFD00DEFF22 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EB8A1D8B15B9044800373E6B /* 480x320.png */,
+				EB8A1D8915B9008400373E6B /* bigtest.png */,
+				EB8A1D7915B8FE1300373E6B /* BlueButton.png */,
+				EB8A1D7A15B8FE1300373E6B /* BlueNote.png */,
+				EB8A1D7B15B8FE1300373E6B /* Fail.png */,
+				EB8A1D7C15B8FE1300373E6B /* GreenButton.png */,
+				EB8A1D7D15B8FE1300373E6B /* GreenNote.png */,
+				EB8A1D7E15B8FE1300373E6B /* Nice.png */,
+				EB8A1D7F15B8FE1400373E6B /* RedButton.png */,
+				EB8A1D8015B8FE1400373E6B /* RedNote.png */,
 				EB42009D15B2B21C00DEFF22 /* coin.mp3 */,
 				EB42009B15B2AE5F00DEFF22 /* pewpew.caf */,
 				EB42009915B2A97100DEFF22 /* yunkeball.png */,
@@ -952,8 +982,8 @@
 		EB42FEF115B27BFC00DEFF22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "Washington University in St. Louis";
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Ontic;
 			};
 			buildConfigurationList = EB42FEF415B27BFC00DEFF22 /* Build configuration list for PBXProject "TestCoco" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -993,6 +1023,16 @@
 				EB42009A15B2A97100DEFF22 /* yunkeball.png in Resources */,
 				EB42009C15B2AE6000DEFF22 /* pewpew.caf in Resources */,
 				EB42009E15B2B21C00DEFF22 /* coin.mp3 in Resources */,
+				EB8A1D8115B8FE1400373E6B /* BlueButton.png in Resources */,
+				EB8A1D8215B8FE1400373E6B /* BlueNote.png in Resources */,
+				EB8A1D8315B8FE1400373E6B /* Fail.png in Resources */,
+				EB8A1D8415B8FE1400373E6B /* GreenButton.png in Resources */,
+				EB8A1D8515B8FE1400373E6B /* GreenNote.png in Resources */,
+				EB8A1D8615B8FE1400373E6B /* Nice.png in Resources */,
+				EB8A1D8715B8FE1400373E6B /* RedButton.png in Resources */,
+				EB8A1D8815B8FE1400373E6B /* RedNote.png in Resources */,
+				EB8A1D8A15B9008500373E6B /* bigtest.png in Resources */,
+				EB8A1D8C15B9044800373E6B /* 480x320.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
